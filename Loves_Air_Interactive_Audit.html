@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loves Air - Google Ads Comprehensive Audit Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a25;
+            --bg-card-hover: #222230;
+            --accent-red: #ff4757;
+            --accent-orange: #ffa502;
+            --accent-green: #2ed573;
+            --accent-blue: #3742fa;
+            --accent-purple: #a855f7;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #6b6b80;
+            --border-color: #2a2a3a;
+            --gradient-red: linear-gradient(135deg, #ff4757, #ff6b7a);
+            --gradient-green: linear-gradient(135deg, #2ed573, #7bed9f);
+            --gradient-blue: linear-gradient(135deg, #3742fa, #5352ed);
+            --gradient-orange: linear-gradient(135deg, #ffa502, #ffbe76);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,71,87,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        .header-content { position: relative; z-index: 1; }
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff, #a0a0b0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .header-meta {
+            display: flex;
+            gap: 30px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        .grade-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gradient-red);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 15px;
+        }
+        
+        /* Navigation */
+        .nav {
+            background: var(--bg-secondary);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .nav-links {
+            display: flex;
+            gap: 5px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+        .nav-link {
+            padding: 10px 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            background: var(--accent-purple);
+            color: white;
+            border-color: var(--accent-purple);
+        }
+        
+        /* Section */
+        .section {
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+        .stat-card:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-2px);
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Space Mono', monospace;
+        }
+        .stat-benchmark {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+        .stat-status {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        .status-critical { background: rgba(255,71,87,0.2); color: var(--accent-red); }
+        .status-warning { background: rgba(255,165,2,0.2); color: var(--accent-orange); }
+        .status-good { background: rgba(46,213,115,0.2); color: var(--accent-green); }
+        
+        /* Tables */
+        .table-wrapper {
+            overflow-x: auto;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 25px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        th {
+            background: var(--bg-secondary);
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        td {
+            padding: 14px 16px;
+            border-top: 1px solid var(--border-color);
+            white-space: nowrap;
+        }
+        tr:hover td { background: var(--bg-card-hover); }
+        .value-negative { color: var(--accent-red); font-weight: 600; }
+        .value-positive { color: var(--accent-green); font-weight: 600; }
+        .value-warning { color: var(--accent-orange); font-weight: 600; }
+        
+        /* Progress Bars */
+        .progress-bar {
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        .progress-red { background: var(--gradient-red); }
+        .progress-orange { background: var(--gradient-orange); }
+        .progress-green { background: var(--gradient-green); }
+        
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .issue-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            border-left: 4px solid var(--accent-red);
+        }
+        .issue-card.warning { border-left-color: var(--accent-orange); }
+        .issue-card.info { border-left-color: var(--accent-blue); }
+        .issue-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        .issue-detail {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+        .issue-action {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(168,85,247,0.15);
+            color: var(--accent-purple);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* Accordion */
+        .accordion { margin-bottom: 15px; }
+        .accordion-header {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 18px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .accordion-header:hover { background: var(--bg-card-hover); }
+        .accordion-title { font-weight: 600; }
+        .accordion-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+        .accordion.active .accordion-icon { transform: rotate(180deg); }
+        .accordion-content {
+            display: none;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+        }
+        .accordion.active .accordion-content { display: block; }
+        
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .tag-broad { background: rgba(255,71,87,0.2); color: var(--accent-red); }
+        .tag-phrase { background: rgba(255,165,2,0.2); color: var(--accent-orange); }
+        .tag-exact { background: rgba(46,213,115,0.2); color: var(--accent-green); }
+        
+        /* Keyword Structure */
+        .structure-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        .structure-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .keyword-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .keyword-item {
+            background: var(--bg-secondary);
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            border: 1px solid var(--border-color);
+        }
+        .keyword-exact { border-color: var(--accent-green); color: var(--accent-green); }
+        .keyword-phrase { border-color: var(--accent-orange); color: var(--accent-orange); }
+        
+        /* Collapsible Sections */
+        .collapse-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        .collapse-btn:hover { background: var(--bg-card-hover); }
+        .collapse-content { display: none; padding: 15px 0; }
+        .collapse-content.show { display: block; }
+        
+        /* Action Priority */
+        .priority-high { border-left: 4px solid var(--accent-red); }
+        .priority-medium { border-left: 4px solid var(--accent-orange); }
+        .priority-low { border-left: 4px solid var(--accent-green); }
+        
+        /* Footer */
+        .footer {
+            padding: 30px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        
+        /* Tabs */
+        .tabs { display: flex; gap: 5px; margin-bottom: 20px; flex-wrap: wrap; }
+        .tab-btn {
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--accent-blue);
+            color: white;
+            border-color: var(--accent-blue);
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        /* Chart placeholder */
+        .chart-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Search IS Visual */
+        .is-visual {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .is-bar {
+            flex: 1;
+            height: 30px;
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+        }
+        .is-segment {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .is-active { background: var(--accent-green); }
+        .is-rank { background: var(--accent-red); }
+        .is-budget { background: var(--accent-orange); }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <h1>🔍 Loves Air Google Ads Comprehensive Audit</h1>
+            <div class="header-meta">
+                <span>📅 November 1-30, 2025</span>
+                <span>📍 Modesto, California</span>
+                <span>💰 Total Spend: $20,448.19</span>
+            </div>
+            <div class="grade-badge">⚠️ ACCOUNT HEALTH GRADE: D-</div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-links">
+                <a href="#executive" class="nav-link active">Executive Summary</a>
+                <a href="#impression-share" class="nav-link">Impression Share</a>
+                <a href="#quality-score" class="nav-link">Quality Score</a>
+                <a href="#structure" class="nav-link">Structure Issues</a>
+                <a href="#conversion" class="nav-link">Conversion Tracking</a>
+                <a href="#search-terms" class="nav-link">Search Terms</a>
+                <a href="#keywords" class="nav-link">Keyword Structure</a>
+                <a href="#action-plan" class="nav-link">Action Plan</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- SECTION 1: Executive Summary -->
+        <section id="executive" class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--gradient-red);">📊</div>
+                <div>
+                    <h2 class="section-title">Executive Summary & Health Check</h2>
+                    <p class="section-subtitle">Overall account performance analysis</p>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Total Spend</div>
+                    <div class="stat-value">$20,448</div>
+                    <div class="stat-benchmark">November 2025</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Conversions</div>
+                    <div class="stat-value">41</div>
+                    <div class="stat-benchmark">46 Phone Calls</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Cost Per Acquisition</div>
+                    <div class="stat-value" style="color: var(--accent-red);">$498.74</div>
+                    <div class="stat-benchmark">Benchmark: $75-$200</div>
+                    <span class="stat-status status-critical">2.5-6x OVER TARGET</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Click-Through Rate</div>
+                    <div class="stat-value" style="color: var(--accent-orange);">2.84%</div>
+                    <div class="stat-benchmark">Benchmark: 3-5%</div>
+                    <span class="stat-status status-warning">BELOW AVERAGE</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Conversion Rate</div>
+                    <div class="stat-value" style="color: var(--accent-red);">1.33%</div>
+                    <div class="stat-benchmark">Benchmark: 3-5%</div>
+                    <span class="stat-status status-critical">POOR</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Search Impression Share</div>
+                    <div class="stat-value" style="color: var(--accent-red);">36.08%</div>
+                    <div class="stat-benchmark">Benchmark: 60-80%</div>
+                    <span class="stat-status status-critical">LOW VISIBILITY</span>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 15px; font-size: 1.2rem;">Campaign Performance Breakdown</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Campaign</th>
+                            <th>Spend</th>
+                            <th>Conversions</th>
+                            <th>CPA</th>
+                            <th>CVR</th>
+                            <th>Search IS</th>
+                            <th>Lost IS (Budget)</th>
+                            <th>Lost IS (Rank)</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>HVAC - Sales</strong></td>
+                            <td>$8,153.38</td>
+                            <td>8</td>
+                            <td class="value-negative">$1,019.17</td>
+                            <td>3.31%</td>
+                            <td>41.45%</td>
+                            <td class="value-negative">37.22%</td>
+                            <td>21.33%</td>
+                            <td><span class="stat-status status-critical">BLEEDING</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>HVAC - Service</strong></td>
+                            <td>$7,713.30</td>
+                            <td>15</td>
+                            <td class="value-warning">$514.22</td>
+                            <td>7.43%</td>
+                            <td>33.33%</td>
+                            <td>29.41%</td>
+                            <td class="value-negative">37.26%</td>
+                            <td><span class="stat-status status-warning">RANK ISSUES</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Branded</strong></td>
+                            <td>$2,973.44</td>
+                            <td>14</td>
+                            <td class="value-positive">$212.39</td>
+                            <td class="value-positive">8.70%</td>
+                            <td>40.22%</td>
+                            <td class="value-negative">30.69%</td>
+                            <td>29.09%</td>
+                            <td><span class="stat-status status-good">BEST - BUDGET LIMITED</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Performance Max</strong></td>
+                            <td>$1,431.34</td>
+                            <td>4</td>
+                            <td class="value-warning">$357.89</td>
+                            <td class="value-negative">0.18%</td>
+                            <td class="value-negative">21.70%</td>
+                            <td>28.61%</td>
+                            <td class="value-negative">49.70%</td>
+                            <td><span class="stat-status status-critical">MAJOR RANK LOSS</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Remarketing Display</strong></td>
+                            <td>$176.73</td>
+                            <td class="value-negative">0</td>
+                            <td class="value-negative">∞</td>
+                            <td class="value-negative">0.00%</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td><span class="stat-status status-critical">ZERO CONVERSIONS</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.8rem;">Source: Campaign report (2).csv, Rows 4-24</p>
+        </section>
+
+        <!-- SECTION 2: Impression Share Analysis -->
+        <section id="impression-share" class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--gradient-orange);">📉</div>
+                <div>
+                    <h2 class="section-title">Search Impression Share Analysis</h2>
+                    <p class="section-subtitle">Lost impressions due to budget and rank constraints</p>
+                </div>
+            </div>
+
+            <div class="card-grid" style="margin-bottom: 30px;">
+                <div class="issue-card">
+                    <div class="issue-title">🔴 HVAC Sales: 37.22% Lost to BUDGET</div>
+                    <div class="issue-detail">
+                        <strong>Current Budget:</strong> $325.63/day<br>
+                        <strong>Recommended Budget:</strong> $990.00/day<br>
+                        <strong>Missing:</strong> 39 additional interactions/week<br>
+                        Status says "Limited by Budget" - this is costing you leads!
+                    </div>
+                    <div class="is-visual" style="margin-bottom: 15px;">
+                        <div class="is-bar">
+                            <div class="is-segment is-active" style="width: 41.45%;">41.45%</div>
+                            <div class="is-segment is-budget" style="width: 37.22%;">37.22%</div>
+                            <div class="is-segment is-rank" style="width: 21.33%;">21.33%</div>
+                        </div>
+                    </div>
+                    <span class="issue-action">Increase budget to $990/day</span>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-title">🔴 HVAC Service: 37.26% Lost to RANK</div>
+                    <div class="issue-detail">
+                        <strong>Absolute Top IS:</strong> Only 11.62%<br>
+                        <strong>Lost Abs Top IS (Rank):</strong> 57.47%<br>
+                        Ads almost never appear in position 1. Quality Score and/or bids need improvement.
+                    </div>
+                    <div class="is-visual" style="margin-bottom: 15px;">
+                        <div class="is-bar">
+                            <div class="is-segment is-active" style="width: 33.33%;">33.33%</div>
+                            <div class="is-segment is-budget" style="width: 29.41%;">29.41%</div>
+                            <div class="is-segment is-rank" style="width: 37.26%;">37.26%</div>
+                        </div>
+                    </div>
+                    <span class="issue-action">Fix Quality Score + Increase Bids</span>
+                </div>
+                <div class="issue-card warning">
+                    <div class="issue-title">⚠️ Branded: 30.69% Lost to BUDGET</div>
+                    <div class="issue-detail">
+                        <strong>Current Budget:</strong> $202.71/day<br>
+                        <strong>Recommended Budget:</strong> $440.00/day<br>
+                        <strong>CPA:</strong> $212.39 (BEST in account!)<br>
+                        Your BEST performing campaign is budget-starved!
+                    </div>
+                    <div class="is-visual" style="margin-bottom: 15px;">
+                        <div class="is-bar">
+                            <div class="is-segment is-active" style="width: 40.22%;">40.22%</div>
+                            <div class="is-segment is-budget" style="width: 30.69%;">30.69%</div>
+                            <div class="is-segment is-rank" style="width: 29.09%;">29.09%</div>
+                        </div>
+                    </div>
+                    <span class="issue-action">PRIORITY: Increase budget to $440/day</span>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-title">🔴 Performance Max: 49.70% Lost to RANK</div>
+                    <div class="issue-detail">
+                        <strong>Search IS:</strong> Only 21.70%<br>
+                        Nearly HALF of all impressions lost to rank. Asset quality, bidding strategy, or audience signals need major review.
+                    </div>
+                    <div class="is-visual" style="margin-bottom: 15px;">
+                        <div class="is-bar">
+                            <div class="is-segment is-active" style="width: 21.70%;">21.70%</div>
+                            <div class="is-segment is-budget" style="width: 28.61%;">28.61%</div>
+                            <div class="is-segment is-rank" style="width: 49.70%;">49.70%</div>
+                        </div>
+                    </div>
+                    <span class="issue-action">Review asset quality & signals</span>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 15px; font-size: 1.2rem;">Keyword-Level Impression Share Issues</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Keyword</th>
+                            <th>Match Type</th>
+                            <th>Search IS</th>
+                            <th>Lost IS (Rank)</th>
+                            <th>Lost Top IS (Rank)</th>
+                            <th>Quality Score</th>
+                            <th>Issue</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>hvac repair</td>
+                            <td><span class="tag tag-exact">Exact</span></td>
+                            <td class="value-negative">25.00%</td>
+                            <td class="value-negative">75.00%</td>
+                            <td>37.50%</td>
+                            <td class="value-negative">3</td>
+                            <td>Almost never shows</td>
+                        </tr>
+                        <tr>
+                            <td>air hvac</td>
+                            <td><span class="tag tag-broad">Broad</span></td>
+                            <td class="value-negative">21.05%</td>
+                            <td class="value-negative">51.16%</td>
+                            <td>58.36%</td>
+                            <td>N/A</td>
+                            <td>Half impressions lost</td>
+                        </tr>
+                        <tr>
+                            <td>"hvac contractor"</td>
+                            <td><span class="tag tag-phrase">Phrase</span></td>
+                            <td>50.00%</td>
+                            <td class="value-negative">50.00%</td>
+                            <td>85.71%</td>
+                            <td class="value-negative">3</td>
+                            <td>Low QS causing loss</td>
+                        </tr>
+                        <tr>
+                            <td>heating and cooling near me</td>
+                            <td><span class="tag tag-broad">Broad</span></td>
+                            <td>36.55%</td>
+                            <td class="value-negative">44.12%</td>
+                            <td>54.13%</td>
+                            <td class="value-negative">3</td>
+                            <td>Low QS problem</td>
+                        </tr>
+                        <tr>
+                            <td>"heating and cooling"</td>
+                            <td><span class="tag tag-phrase">Phrase</span></td>
+                            <td>31.64%</td>
+                            <td class="value-negative">41.60%</td>
+                            <td>49.84%</td>
+                            <td class="value-warning">5</td>
+                            <td>Moderate rank loss</td>
+                        </tr>
+                        <tr>
+                            <td>hvac technician</td>
+                            <td><span class="tag tag-broad">Broad</span></td>
+                            <td>31.35%</td>
+                            <td class="value-negative">40.03%</td>
+                            <td>47.11%</td>
+                            <td class="value-negative">3</td>
+                            <td>QS killing visibility</td>
+                        </tr>
+                        <tr>
+                            <td>[ac repair near me]</td>
+                            <td><span class="tag tag-exact">Exact</span></td>
+                            <td class="value-negative">20.00%</td>
+                            <td class="value-negative">40.00%</td>
+                            <td>60.00%</td>
+                            <td class="value-negative">3</td>
+                            <td>Rebuild needed</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.8rem;">Source: Search keyword report (2).csv</p>
+        </section>
+
+        <!-- SECTION 3: Quality Score Issues -->
+        <section id="quality-score" class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--gradient-blue);">⭐</div>
+                <div>
+                    <h2 class="section-title">Quality Score Analysis</h2>
+                    <p class="section-subtitle">Low Quality Scores are killing your impression share and increasing costs</p>
+                </div>
+            </div>
+
+            <div class="card-grid" style="margin-bottom: 30px;">
+                <div class="issue-card">
+                    <div class="issue-title">🔴 QS 1 Keywords (Critical - PAUSE)</div>
+                    <div class="issue-detail">
+                        These keywords have rock-bottom Quality Scores and are wasting budget while hurting account health.
+                    </div>
+                    <div class="table-wrapper" style="margin-top: 15px;">
+                        <table>
+                            <thead>
+                                <tr><th>Keyword</th><th>Spend</th><th>Landing Page</th><th>Ad Relevance</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>new ac unit</td><td>$631.92</td><td class="value-negative">Below Avg</td><td class="value-negative">Below Avg</td></tr>
+                                <tr><td>ac replacement</td><td>$312.76</td><td class="value-negative">Below Avg</td><td class="value-negative">Below Avg</td></tr>
+                                <tr><td>"new gas furnace"</td><td>Limited</td><td class="value-negative">Below Avg</td><td class="value-negative">Below Avg</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="issue-card warning">
+                    <div class="issue-title">⚠️ QS 2 Keywords (Fix Landing Pages)</div>
+                    <div class="issue-detail">
+                        Landing page experience is the main issue. Create dedicated landing pages for these keywords.
+                    </div>
+                    <div class="table-wrapper" style="margin-top: 15px;">
+                        <table>
+                            <thead>
+                                <tr><th>Keyword</th><th>Spend</th><th>Landing Page</th><th>Expected CTR</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>mini split system</td><td>$75.06</td><td class="value-negative">Below Avg</td><td class="value-negative">Below Avg</td></tr>
+                                <tr><td>"ductless mini split"</td><td>$136.79</td><td class="value-negative">Below Avg</td><td class="value-negative">Below Avg</td></tr>
+                                <tr><td>[mini split ac]</td><td>$3.80</td><td class="value-negative">Below Avg</td><td class="value-negative">Below Avg</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 15px; font-size: 1.2rem;">QS 3-4 Keywords Needing Optimization</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Keyword</th>
+                            <th>Match Type</th>
+                            <th>QS</th>
+                            <th>Spend</th>
+                            <th>Landing Page</th>
+                            <th>Ad Relevance</th>
+                            <th>Expected CTR</th>
+                            <th>Priority Fix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>hvac technician</td>
+                            <td><span class="tag tag-broad">Broad</span></td>
+                            <td class="value-negative">3</td>
+                            <td>$129.73</td>
+                            <td>Average</td>
+                            <td class="value-negative">Below Avg</td>
+                            <td class="value-negative">Below Avg</td>
+                            <td>Ad copy + CTR</td>
+                        </tr>
+                        <tr>
+                            <td>heating and cooling near me</td>
+                            <td><span class="tag tag-broad">Broad</span></td>
+                            <td class="value-negative">3</td>
+                            <td>$72.18</td>
+                            <td>Average</td>
+                            <td class="value-negative">Below Avg</td>
+                            <td class="value-negative">Below Avg</td>
+                            <td>Ad copy + CTR</td>
+                        </tr>
+                        <tr>
+                            <td>[hvac near me]</td>
+                            <td><span class="tag tag-exact">Exact</span></td>
+                            <td class="value-negative">3</td>
+                            <td>$0</td>
+                            <td>Average</td>
+                            <td class="value-negative">Below Avg</td>
+                            <td class="value-negative">Below Avg</td>
+                            <td>Ad relevance</td>
+                        </tr>
+                        <tr>
+                            <td>[hvac repair]</td>
+                            <td><span class="tag tag-exact">Exact</span></td>
+                            <td class="value-negative">3</td>
+                            <td>$0</td>
+                            <td>Average</td>
+                            <td class="value-negative">Below Avg</td>
+                            <td class="value-negative">Below Avg</td>
+                            <td>Ad relevance</td>
+                        </tr>
+                        <tr>
+                            <td>"furnace replacement"</td>
+                            <td><span class="tag tag-phrase">Phrase</span></td>
+                            <td class="value-warning">4</td>
+                            <td>$27.53</td>
+                            <td>Average</td>
+                            <td>Average</td>
+                            <td class="value-negative">Below Avg</td>
+                            <td>Improve CTR</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="structure-block" style="margin-top: 30px;">
+                <div class="structure-title">💡 Quality Score Impact on Performance</div>
+                <table style="width: 100%;">
+                    <thead>
+                        <tr><th>QS Range</th><th>Typical CPA</th><th>Typical CTR</th><th>Recommendation</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="value-negative">1-3</td><td>$500+</td><td>&lt;2%</td><td>Pause or completely rebuild</td></tr>
+                        <tr><td class="value-warning">4-5</td><td>$300-500</td><td>2-4%</td><td>Optimize landing pages</td></tr>
+                        <tr><td>6-7</td><td>$150-300</td><td>4-6%</td><td>Improve ad relevance</td></tr>
+                        <tr><td class="value-positive">8-10</td><td>&lt;$150</td><td>6%+</td><td>Scale budget</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Structure Issues -->
+        <section id="structure" class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, #a855f7, #ec4899);">🏗️</div>
+                <div>
+                    <h2 class="section-title">Account Structure Issues</h2>
+                    <p class="section-subtitle">Campaign and Ad Group organization problems</p>
+                </div>
+            </div>
+
+            <div class="card-grid">
+                <div class="issue-card">
+                    <div class="issue-title">🔴 Match Type Imbalance</div>
+                    <div class="issue-detail">
+                        <strong>66% of budget</strong> is going to Broad match keywords which have the worst CPAs. Exact match has best performance but only gets 8% of spend.
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>Broad Match (66% spend)</span>
+                            <span class="value-negative">~$694 CPA</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-red" style="width: 66%;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>Phrase Match (25% spend)</span>
+                            <span class="value-warning">~$400 CPA</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-orange" style="width: 25%;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>Exact Match (8% spend)</span>
+                            <span class="value-positive">~$220 CPA</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-green" style="width: 8%;"></div>
+                        </div>
+                    </div>
+                    <span class="issue-action" style="margin-top: 15px;">Shift 30-40% from Broad to Exact/Phrase</span>
+                </div>
+
+                <div class="issue-card">
+                    <div class="issue-title">🔴 Ad Groups with Zero Conversions</div>
+                    <div class="issue-detail">
+                        Multiple ad groups spending money with no results. These are either targeting wrong intent or need restructuring.
+                    </div>
+                    <ul style="color: var(--text-secondary); font-size: 0.85rem; margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Furnace Install:</strong> $522.84 spent, 0 conversions</li>
+                        <li><strong>Heating Install:</strong> $298.50 spent, 0 conversions</li>
+                        <li><strong>Remarketing (all segments):</strong> $176.73, 0 conversions</li>
+                    </ul>
+                    <span class="issue-action" style="margin-top: 15px;">Review targeting or pause</span>
+                </div>
+
+                <div class="issue-card warning">
+                    <div class="issue-title">⚠️ Paused High-Value Ad Groups</div>
+                    <div class="issue-detail">
+                        Several potentially valuable ad groups are currently paused, especially during winter heating season.
+                    </div>
+                    <ul style="color: var(--text-secondary); font-size: 0.85rem; margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Heating Service:</strong> PAUSED (winter season!)</li>
+                        <li><strong>Furnace Service:</strong> PAUSED (winter season!)</li>
+                        <li><strong>AC Service:</strong> PAUSED</li>
+                        <li><strong>Water Heater Repair:</strong> PAUSED</li>
+                    </ul>
+                    <span class="issue-action" style="margin-top: 15px;">Re-evaluate for winter season</span>
+                </div>
+
+                <div class="issue-card info">
+                    <div class="issue-title">ℹ️ Ad Copy Issues Detected</div>
+                    <div class="issue-detail">
+                        Found irrelevant headlines and mixed messaging in some ads that hurt Quality Score.
+                    </div>
+                    <ul style="color: var(--text-secondary); font-size: 0.85rem; margin-left: 20px; margin-top: 10px;">
+                        <li><strong>"Droplet Separator Applications"</strong> headline in HVAC ads - completely irrelevant</li>
+                        <li>Water Heater ad mentions "Furnace Installation Company" - wrong service</li>
+                        <li>Missing location in Headline 1 for local intent keywords</li>
+                        <li>No urgency messaging like "Same-Day Service"</li>
+                    </ul>
+                    <span class="issue-action" style="margin-top: 15px;">Fix ad copy relevance</span>
+                </div>
+
+                <div class="issue-card">
+                    <div class="issue-title">🔴 High CPA Ad Groups (Bleeding Budget)</div>
+                    <div class="issue-detail">
+                        These ad groups are getting conversions but at unsustainable costs.
+                    </div>
+                    <div class="table-wrapper" style="margin-top: 15px;">
+                        <table>
+                            <thead>
+                                <tr><th>Ad Group</th><th>Spend</th><th>Conv</th><th>CPA</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Modesto Installs</td><td>$2,894.10</td><td>2</td><td class="value-negative">$1,447.05</td></tr>
+                                <tr><td>AC Install</td><td>$2,037.74</td><td>2</td><td class="value-negative">$1,018.87</td></tr>
+                                <tr><td>HVAC Install</td><td>$2,092.53</td><td>4</td><td class="value-negative">$523.13</td></tr>
+                                <tr><td>HVAC Service</td><td>$1,044.79</td><td>2.5</td><td class="value-warning">$417.92</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="issue-card warning">
+                    <div class="issue-title">⚠️ Mixed Intent Ad Groups</div>
+                    <div class="issue-detail">
+                        Some ad groups contain keywords with conflicting intent (install + repair mixed), hurting ad relevance and Quality Score.
+                    </div>
+                    <ul style="color: var(--text-secondary); font-size: 0.85rem; margin-left: 20px; margin-top: 10px;">
+                        <li><strong>HVAC Service *</strong>: Contains both service and installation terms</li>
+                        <li><strong>Modesto Installs</strong>: Contains repair-related search terms</li>
+                        <li><strong>AC Install</strong>: Getting clicks for maintenance queries</li>
+                    </ul>
+                    <span class="issue-action" style="margin-top: 15px;">Separate by intent (Repair vs Install)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: Conversion Tracking Issues -->
+        <section id="conversion" class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, #10b981, #059669);">📞</div>
+                <div>
+                    <h2 class="section-title">Conversion Tracking Analysis</h2>
+                    <p class="section-subtitle">Potential issues with conversion attribution and tracking</p>
+                </div>
+            </div>
+
+            <div class="card-grid">
+                <div class="issue-card warning">
+                    <div class="issue-title">⚠️ Phone Calls vs Conversions Mismatch</div>
+                    <div class="issue-detail">
+                        <strong>46 Phone Calls</strong> recorded but only <strong>41 Conversions</strong> tracked. Some calls may not be counting as conversions, or there's tracking discrepancy.
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <strong>Campaigns with Phone Calls:</strong>
+                        <ul style="margin-left: 20px; margin-top: 10px; color: var(--text-secondary); font-size: 0.85rem;">
+                            <li>HVAC Sales: 13 calls, 8 conversions</li>
+                            <li>HVAC Service: 10 calls, 15 conversions</li>
+                            <li>Branded: 13 calls, 14 conversions</li>
+                            <li>Performance Max: 10 calls, 4 conversions</li>
+                        </ul>
+                    </div>
+                    <span class="issue-action" style="margin-top: 15px;">Review call conversion settings</span>
+                </div>
+
+                <div class="issue-card">
+                    <div class="issue-title">🔴 Display Remarketing: Zero Conversions</div>
+                    <div class="issue-detail">
+                        <strong>245 clicks</strong> and <strong>$176.73 spent</strong> with <strong>ZERO conversions</strong>. Either tracking is broken or the campaign is ineffective.
+                    </div>
+                    <ul style="color: var(--text-secondary); font-size: 0.85rem; margin-left: 20px; margin-top: 10px;">
+                        <li>All Users (14 Days): 72 clicks, 0 conv</li>
+                        <li>All Users (30 Days): 79 clicks, 0 conv</li>
+                        <li>All Users (90 Days): 48 clicks, 0 conv</li>
+                        <li>All Users (180 Days): 46 clicks, 0 conv</li>
+                    </ul>
+                    <span class="issue-action" style="margin-top: 15px;">Check pixel placement on remarketing pages</span>
+                </div>
+
+                <div class="issue-card info">
+                    <div class="issue-title">ℹ️ Conversion Value Not Tracked</div>
+                    <div class="issue-detail">
+                        No conversion value data found. Without value tracking, you can't calculate true ROAS or optimize for high-value leads.
+                    </div>
+                    <span class="issue-action" style="margin-top: 15px;">Implement conversion value tracking</span>
+                </div>
+
+                <div class="issue-card warning">
+                    <div class="issue-title">⚠️ Fractional Conversions Detected</div>
+                    <div class="issue-detail">
+                        Some campaigns show fractional conversions (e.g., 0.50, 2.50), indicating conversion counting issues or data-driven attribution model.
+                    </div>
+                    <ul style="color: var(--text-secondary); font-size: 0.85rem; margin-left: 20px; margin-top: 10px;">
+                        <li>"heating and cooling" keyword: 0.50 conversions</li>
+                        <li>HVAC Service ad group: 2.50 conversions</li>
+                        <li>Performance Max: 0.03 conversions in some areas</li>
+                    </ul>
+                    <span class="issue-action" style="margin-top: 15px;">Review attribution model settings</span>
+                </div>
+            </div>
+
+            <div class="structure-block" style="margin-top: 30px;">
+                <div class="structure-title">📋 Conversion Tracking Checklist</div>
+                <table style="width: 100%;">
+                    <thead>
+                        <tr><th>Check Item</th><th>Status</th><th>Priority</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Phone call tracking on all pages</td><td class="value-warning">Verify</td><td>High</td></tr>
+                        <tr><td>Form submission tracking</td><td class="value-warning">Verify</td><td>High</td></tr>
+                        <tr><td>Remarketing pixel on all pages</td><td class="value-negative">Issue Likely</td><td>High</td></tr>
+                        <tr><td>Conversion value assignment</td><td class="value-negative">Not Set</td><td>Medium</td></tr>
+                        <tr><td>Attribution model appropriate</td><td class="value-warning">Review</td><td>Medium</td></tr>
+                        <tr><td>Offline conversion import (for calls)</td><td class="value-warning">Consider</td><td>Low</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECTION 6: Search Terms Waste -->
+        <section id="search-terms" class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--gradient-red);">🔍</div>
+                <div>
+                    <h2 class="section-title">Search Term Waste Analysis</h2>
+                    <p class="section-subtitle">Top wasted spend from irrelevant search terms</p>
+                </div>
+            </div>
+
+            <h3 style="margin: 0 0 15px; font-size: 1.2rem;">Top 15 Wasted Search Terms ($50+, 0 Conversions)</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Search Term</th>
+                            <th>Campaign</th>
+                            <th>Ad Group</th>
+                            <th>Spend</th>
+                            <th>Issue Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>oil furnace repair</td><td>Service</td><td>Furnace Repair</td><td class="value-negative">$454.76</td><td>Wrong service</td></tr>
+                        <tr><td>valley air conditioning modesto</td><td>Sales</td><td>Modesto Installs</td><td class="value-negative">$192.16</td><td>Competitor</td></tr>
+                        <tr><td>heating repair near me</td><td>Service</td><td>Heating Repair</td><td class="value-negative">$179.87</td><td>Generic, not converting</td></tr>
+                        <tr><td>online estimates hvac companies</td><td>Sales</td><td>Modesto Installs</td><td class="value-negative">$175.52</td><td>Research intent</td></tr>
+                        <tr><td>lowes heating and cooling</td><td>PMax</td><td>--</td><td class="value-negative">$164.49</td><td>Competitor/DIY</td></tr>
+                        <tr><td>heating and furnace repair near me</td><td>Sales</td><td>Furnace Install</td><td class="value-negative">$149.67</td><td>Wrong campaign</td></tr>
+                        <tr><td>hvac dryer vent cleaning</td><td>Sales</td><td>AC Install</td><td class="value-negative">$125.86</td><td>Wrong service</td></tr>
+                        <tr><td>ac trane</td><td>Sales</td><td>AC Install</td><td class="value-negative">$118.42</td><td>Brand search</td></tr>
+                        <tr><td>modesto water heater repair</td><td>Service</td><td>Furnace Repair</td><td class="value-negative">$118.30</td><td>Wrong ad group</td></tr>
+                        <tr><td>hvac companies near me</td><td>Service</td><td>HVAC Service</td><td class="value-negative">$113.11</td><td>Research phase</td></tr>
+                        <tr><td>loves air modesto</td><td>Branded</td><td>Brand</td><td class="value-warning">$109.78</td><td>Brand, no conversion</td></tr>
+                        <tr><td>thorsens plumbing</td><td>Sales</td><td>Modesto Installs</td><td class="value-negative">$96.57</td><td>Competitor</td></tr>
+                        <tr><td>comfort air stockton</td><td>Service</td><td>AC Maintenance</td><td class="value-negative">$95.95</td><td>Competitor</td></tr>
+                        <tr><td>air duct cleaning modesto</td><td>Sales</td><td>HVAC Install</td><td class="value-negative">$72.93</td><td>Wrong service</td></tr>
+                        <tr><td>villara building systems</td><td>Sales</td><td>HVAC Install</td><td class="value-negative">$68.63</td><td>Competitor</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="color: var(--accent-red); font-weight: 600; margin-top: 15px;">💰 Total Wasted on Top 15: ~$2,271 (11% of budget)</p>
+
+            <h3 style="margin: 30px 0 15px; font-size: 1.2rem;">Converting Search Terms (What's Working)</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr><th>Search Term</th><th>Campaign</th><th>Spend</th><th>Conv</th><th>CPA</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="value-positive">loves heating and air modesto</td><td>Branded</td><td>$334.29</td><td>2</td><td class="value-positive">$167.15</td></tr>
+                        <tr><td class="value-positive">loves heating and air</td><td>Branded</td><td>$324.51</td><td>2</td><td class="value-positive">$162.26</td></tr>
+                        <tr><td class="value-positive">loves air</td><td>Branded</td><td>$290.34</td><td>2</td><td class="value-positive">$145.17</td></tr>
+                        <tr><td class="value-positive">loves hvac</td><td>Branded</td><td>$132.84</td><td>2</td><td class="value-positive">$66.42</td></tr>
+                        <tr><td class="value-positive">hvac modesto</td><td>Service</td><td>$102.95</td><td>1</td><td class="value-positive">$102.95</td></tr>
+                        <tr><td class="value-positive">furnace repair near me</td><td>Service</td><td>$100.86</td><td>1</td><td class="value-positive">$100.86</td></tr>
+                        <tr><td class="value-positive">ac repair merced</td><td>Service</td><td>$61.50</td><td>1</td><td class="value-positive">$61.50</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="color: var(--accent-green); font-weight: 600; margin-top: 15px;">✅ Brand terms convert at $66-$167 CPA vs $500+ for generic. INCREASE BRANDED BUDGET!</p>
+        </section>
+
+        <!-- SECTION 7: Keyword Structure -->
+        <section id="keywords" class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">🔑</div>
+                <div>
+                    <h2 class="section-title">Recommended Keyword Structure</h2>
+                    <p class="section-subtitle">Optimized structure by theme and intent</p>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('service-tab')">Service Campaign</button>
+                <button class="tab-btn" onclick="showTab('sales-tab')">Sales Campaign</button>
+                <button class="tab-btn" onclick="showTab('brand-tab')">Branded Campaign</button>
+                <button class="tab-btn" onclick="showTab('negatives-tab')">Negative Keywords</button>
+            </div>
+
+            <div id="service-tab" class="tab-content active">
+                <div class="structure-block">
+                    <div class="structure-title">🔧 Ad Group: AC Repair</div>
+                    <div class="keyword-list">
+                        <span class="keyword-item keyword-exact">[ac repair near me]</span>
+                        <span class="keyword-item keyword-exact">[ac repair modesto]</span>
+                        <span class="keyword-item keyword-exact">[ac not working]</span>
+                        <span class="keyword-item keyword-exact">[ac not cooling]</span>
+                        <span class="keyword-item keyword-phrase">"ac repair"</span>
+                        <span class="keyword-item keyword-phrase">"air conditioner repair"</span>
+                        <span class="keyword-item keyword-phrase">"emergency ac repair"</span>
+                    </div>
+                </div>
+                <div class="structure-block">
+                    <div class="structure-title">🔥 Ad Group: Heating Repair</div>
+                    <div class="keyword-list">
+                        <span class="keyword-item keyword-exact">[heater repair near me]</span>
+                        <span class="keyword-item keyword-exact">[furnace repair near me]</span>
+                        <span class="keyword-item keyword-exact">[heater not working]</span>
+                        <span class="keyword-item keyword-exact">[furnace not turning on]</span>
+                        <span class="keyword-item keyword-phrase">"heating repair"</span>
+                        <span class="keyword-item keyword-phrase">"furnace repair"</span>
+                        <span class="keyword-item keyword-phrase">"heater repair"</span>
+                    </div>
+                </div>
+                <div class="structure-block">
+                    <div class="structure-title">🌡️ Ad Group: HVAC Service</div>
+                    <div class="keyword-list">
+                        <span class="keyword-item keyword-exact">[hvac service near me]</span>
+                        <span class="keyword-item keyword-exact">[hvac repair near me]</span>
+                        <span class="keyword-item keyword-exact">[hvac modesto]</span>
+                        <span class="keyword-item keyword-phrase">"hvac repair"</span>
+                        <span class="keyword-item keyword-phrase">"hvac service"</span>
+                        <span class="keyword-item keyword-phrase">"heating and cooling repair"</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="sales-tab" class="tab-content">
+                <div class="structure-block">
+                    <div class="structure-title">❄️ Ad Group: AC Installation</div>
+                    <div class="keyword-list">
+                        <span class="keyword-item keyword-exact">[ac installation near me]</span>
+                        <span class="keyword-item keyword-exact">[new ac unit]</span>
+                        <span class="keyword-item keyword-exact">[ac replacement]</span>
+                        <span class="keyword-item keyword-exact">[central air installation]</span>
+                        <span class="keyword-item keyword-phrase">"ac installation"</span>
+                        <span class="keyword-item keyword-phrase">"new air conditioner"</span>
+                        <span class="keyword-item keyword-phrase">"replace ac unit"</span>
+                    </div>
+                </div>
+                <div class="structure-block">
+                    <div class="structure-title">🔥 Ad Group: Heating Installation</div>
+                    <div class="keyword-list">
+                        <span class="keyword-item keyword-exact">[furnace installation]</span>
+                        <span class="keyword-item keyword-exact">[new furnace]</span>
+                        <span class="keyword-item keyword-exact">[heating system installation]</span>
+                        <span class="keyword-item keyword-phrase">"furnace replacement"</span>
+                        <span class="keyword-item keyword-phrase">"new heating system"</span>
+                    </div>
+                </div>
+                <div class="structure-block">
+                    <div class="structure-title">🌀 Ad Group: Mini Splits</div>
+                    <div class="keyword-list">
+                        <span class="keyword-item keyword-exact">[mini split installation]</span>
+                        <span class="keyword-item keyword-exact">[ductless ac]</span>
+                        <span class="keyword-item keyword-exact">[mini split near me]</span>
+                        <span class="keyword-item keyword-phrase">"mini split installation"</span>
+                        <span class="keyword-item keyword-phrase">"ductless mini split"</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="brand-tab" class="tab-content">
+                <div class="structure-block">
+                    <div class="structure-title">⭐ Ad Group: Brand Terms</div>
+                    <div class="keyword-list">
+                        <span class="keyword-item keyword-exact">[loves air]</span>
+                        <span class="keyword-item keyword-exact">[loves heating and air]</span>
+                        <span class="keyword-item keyword-exact">[loves hvac]</span>
+                        <span class="keyword-item keyword-exact">[loves air modesto]</span>
+                        <span class="keyword-item keyword-phrase">"loves air conditioning"</span>
+                        <span class="keyword-item keyword-phrase">"loves heating"</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="negatives-tab" class="tab-content">
+                <div class="structure-block">
+                    <div class="structure-title">🚫 Competitors (Exact Match)</div>
+                    <div class="keyword-list">
+                        <span class="keyword-item">[valley air conditioning]</span>
+                        <span class="keyword-item">[thorsens plumbing]</span>
+                        <span class="keyword-item">[comfort air]</span>
+                        <span class="keyword-item">[villara]</span>
+                        <span class="keyword-item">[first call heating]</span>
+                        <span class="keyword-item">[blackwell heating]</span>
+                        <span class="keyword-item">[honey's air]</span>
+                        <span class="keyword-item">[coit]</span>
+                        <span class="keyword-item">[service champions]</span>
+                    </div>
+                </div>
+                <div class="structure-block">
+                    <div class="structure-title">🚫 Wrong Services (Phrase Match)</div>
+                    <div class="keyword-list">
+                        <span class="keyword-item">"oil furnace"</span>
+                        <span class="keyword-item">"dryer vent"</span>
+                        <span class="keyword-item">"duct cleaning"</span>
+                        <span class="keyword-item">"humidifier"</span>
+                        <span class="keyword-item">"pool heater"</span>
+                        <span class="keyword-item">"rv ac"</span>
+                        <span class="keyword-item">"window unit"</span>
+                        <span class="keyword-item">"car ac"</span>
+                    </div>
+                </div>
+                <div class="structure-block">
+                    <div class="structure-title">🚫 DIY/Research (Phrase Match)</div>
+                    <div class="keyword-list">
+                        <span class="keyword-item">"how to"</span>
+                        <span class="keyword-item">"diy"</span>
+                        <span class="keyword-item">"parts"</span>
+                        <span class="keyword-item">"cost of"</span>
+                        <span class="keyword-item">"prices"</span>
+                        <span class="keyword-item">"how much"</span>
+                        <span class="keyword-item">"youtube"</span>
+                        <span class="keyword-item">"reddit"</span>
+                    </div>
+                </div>
+                <div class="structure-block">
+                    <div class="structure-title">🚫 Jobs (Phrase Match)</div>
+                    <div class="keyword-list">
+                        <span class="keyword-item">"jobs"</span>
+                        <span class="keyword-item">"careers"</span>
+                        <span class="keyword-item">"hiring"</span>
+                        <span class="keyword-item">"salary"</span>
+                        <span class="keyword-item">"apprentice"</span>
+                        <span class="keyword-item">"union"</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 8: Action Plan -->
+        <section id="action-plan" class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, #22c55e, #16a34a);">✅</div>
+                <div>
+                    <h2 class="section-title">Prioritized Action Plan</h2>
+                    <p class="section-subtitle">Step-by-step fixes in order of impact</p>
+                </div>
+            </div>
+
+            <h3 style="margin: 0 0 20px; color: var(--accent-red);">🔴 IMMEDIATE (This Week) - Est. Savings: $3,000+/mo</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr><th>#</th><th>Action</th><th>Impact</th><th>Effort</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="priority-high"><td>1</td><td>Add competitor negative keywords (valley air, thorsens, villara, etc.)</td><td>Save ~$800/mo</td><td>Low</td></tr>
+                        <tr class="priority-high"><td>2</td><td>Add wrong service negatives (oil furnace, duct cleaning, humidifier)</td><td>Save ~$600/mo</td><td>Low</td></tr>
+                        <tr class="priority-high"><td>3</td><td>PAUSE "new ac unit" Broad match (QS 1, $631 wasted)</td><td>Save $631</td><td>Low</td></tr>
+                        <tr class="priority-high"><td>4</td><td>PAUSE "ac replacement" Broad match (QS 1, $312 wasted)</td><td>Save $312</td><td>Low</td></tr>
+                        <tr class="priority-high"><td>5</td><td>Add DIY/research negatives ("how to", "diy", "parts")</td><td>Save ~$400/mo</td><td>Low</td></tr>
+                        <tr class="priority-high"><td>6</td><td>Reduce bids: Lathrop -30%, Manteca -25%, Lodi -20%</td><td>Reduce waste</td><td>Low</td></tr>
+                        <tr class="priority-high"><td>7</td><td><strong>INCREASE Branded campaign budget $202→$350/day</strong></td><td>More cheap leads</td><td>Low</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="margin: 30px 0 20px; color: var(--accent-orange);">⚠️ MEDIUM PRIORITY (Week 2-3)</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr><th>#</th><th>Action</th><th>Impact</th><th>Effort</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="priority-medium"><td>1</td><td>Restructure keywords by theme (single intent per ad group)</td><td>Better QS</td><td>Medium</td></tr>
+                        <tr class="priority-medium"><td>2</td><td>Create dedicated landing pages for AC Repair, Heating Repair, Installation</td><td>Improve QS</td><td>High</td></tr>
+                        <tr class="priority-medium"><td>3</td><td>Shift 30% of Broad budget to Exact/Phrase match</td><td>Lower CPA</td><td>Medium</td></tr>
+                        <tr class="priority-medium"><td>4</td><td>Review Display Remarketing (0 conv from $176) - pause or fix pixel</td><td>Stop waste</td><td>Low</td></tr>
+                        <tr class="priority-medium"><td>5</td><td>Increase bids on Turlock, Ripon, Oakdale +20%</td><td>More quality leads</td><td>Low</td></tr>
+                        <tr class="priority-medium"><td>6</td><td>Fix ad copy - remove "Droplet Separator", add urgency messaging</td><td>Better CTR</td><td>Medium</td></tr>
+                        <tr class="priority-medium"><td>7</td><td>Re-enable Heating Service ad groups for winter season</td><td>Capture demand</td><td>Low</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="margin: 30px 0 20px; color: var(--accent-green);">✅ LONG-TERM (Month 2+)</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr><th>#</th><th>Action</th><th>Impact</th><th>Effort</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="priority-low"><td>1</td><td>Build out Exact match keyword lists from converting search terms</td><td>Sustainable growth</td><td>Medium</td></tr>
+                        <tr class="priority-low"><td>2</td><td>A/B test landing pages with conversion tracking</td><td>Lower CPA</td><td>High</td></tr>
+                        <tr class="priority-low"><td>3</td><td>Performance Max asset review (49.7% lost to rank)</td><td>Improve visibility</td><td>Medium</td></tr>
+                        <tr class="priority-low"><td>4</td><td>Consider pause/rebuild HVAC Sales campaign ($1,019 CPA)</td><td>Major savings</td><td>High</td></tr>
+                        <tr class="priority-low"><td>5</td><td>Implement call tracking for true conversion attribution</td><td>Better data</td><td>Medium</td></tr>
+                        <tr class="priority-low"><td>6</td><td>Set up conversion value tracking for ROI optimization</td><td>Better decisions</td><td>Medium</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="structure-block" style="margin-top: 30px; border-left: 4px solid var(--accent-green);">
+                <div class="structure-title">📈 Expected Impact If Fixed</div>
+                <ul style="color: var(--text-secondary); margin-left: 20px;">
+                    <li>Reduce CPA from <strong>$498 → $200-$250</strong> (50% improvement)</li>
+                    <li>Increase conversions from <strong>41 → 60-70/month</strong></li>
+                    <li>Save <strong>$3,000-$5,000/month</strong> in wasted spend</li>
+                    <li>Improve Search IS from <strong>36% → 50%+</strong></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Report Generated: December 2025 | Data Period: November 1-30, 2025</p>
+            <p style="margin-top: 5px; color: var(--text-muted);">Sources: Campaign report, Search keyword report, Search terms report, Location report, Ad report, Asset groups report</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Highlight active nav on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Animate stats on scroll
+        const observerOptions = { threshold: 0.3 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-card, .issue-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
+
